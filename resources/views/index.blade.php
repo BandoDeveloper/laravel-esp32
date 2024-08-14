@@ -84,7 +84,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
 </script>
-<script src="{{ asset('js/sidebar.js') }}"></script>
+<script src="https://laravel-esp32.onrender.com/js/sidebar.js"></script>
 </script>
 
 </html>
