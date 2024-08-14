@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Venta</title>
-    <link href="./index.css" rel="stylesheet">
+    <link href="src={{ asset('css/index.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -84,7 +84,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
 </script>
-<script src="./sidebar.js"></script>
+<script src="{{ asset('javascript/sidebar.js') }}"></script>
 </script>
 
 </html>
