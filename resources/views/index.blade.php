@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Venta</title>
-    <link href="{{ asset('js/sidebar.css') }}" rel="stylesheet">
+    <link href="https://laravel-esp32.onrender.com/js/sidebar.css" rel="stylesheet">
 </head>
 
 <body>
