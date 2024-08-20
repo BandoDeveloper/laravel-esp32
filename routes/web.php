@@ -12,3 +12,5 @@ Route::get('/obtenerEstadoLed', [ApiController::class,'obtenerEstadoLed'])->name
 Route::post('/obtenerEstadoLed', [ApiController::class,'obtenerEstadoLed'])->name('obtenerEstadoLed');
 Route::get('/toggleLed', [ApiController::class,'switchToggleStatus'])->name('toggleLed');
 Route::post('/toggleLed', [ApiController::class,'switchToggleStatus'])->name('toggleLed');
+Route::get('/sendDHTData', [ApiController::class,'sendDHTData'])->name('sendDHTData');
+Route::post('/sendDHTData', [ApiController::class,'sendDHTData'])->name('sendDHTData');

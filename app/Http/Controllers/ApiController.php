@@ -46,15 +46,19 @@ class ApiController extends Controller
         } else {
             return response("Error", 404);
         }
-        /*if($sql["estado"] == 1){
-            echo "encendido";
+    }
+    function sendDHTData(Request $req)
+    {
+        if (isset($req['temp'])) {
+            $temp = $req['temp'];
+            if (isset($req['humed'])) {
+                $humed = $req['humed'];
+                # code...
+                DB::insert("insert into DHT11(temperatura, humedad) values('$temp', '$humed')");
+                return response("Datos insertados", 200);
+            }
+        } else {
+            return response("No Data Sent", 400);
         }
-        else if($sql["estado"] == 0){
-            echo "apagado";
-        }
-        else{
-            echo "error";
-        }
-        exit();*/
     }
 }
