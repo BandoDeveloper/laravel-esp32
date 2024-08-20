@@ -16,7 +16,7 @@ class ApiController extends Controller
     function obtenerEstadoLed(){
         $sql = DB::select("SELECT obtener_ultimo_estado();");
         var_dump($sql);
-        if($sql["estado"] == 1){
+        /*if($sql["estado"] == 1){
             echo "encendido";
         }
         else if($sql["estado"] == 0){
@@ -25,6 +25,6 @@ class ApiController extends Controller
         else{
             echo "error";
         }
-        exit();
+        exit();*/
     }
 }
