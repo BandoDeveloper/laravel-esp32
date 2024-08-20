@@ -7,4 +7,6 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get('/verDatosSensor', [ApiController::class,'verDatosSensor'])->name('verDatosSensor');
+Route::post('/verDatosSensor', [ApiController::class,'verDatosSensor'])->name('verDatosSensor');
+Route::get('/obtenerEstadoLed', [ApiController::class,'obtenerEstadoLed'])->name('obtenerEstadoLed');
 Route::post('/obtenerEstadoLed', [ApiController::class,'obtenerEstadoLed'])->name('obtenerEstadoLed');
