@@ -59,7 +59,7 @@ switch_led_status.addEventListener("click", () => {
 
 function switchToggleStatus() {
     $.ajax({
-        /*url: 'http://bandooriginalespapi.mooo.com/switchToggleStatus.php',
+        url: 'https://laravel-esp32.onrender.com/toggleLed',
         type: 'GET',
         dataType: 'json',
         success: function (response) {
@@ -68,7 +68,7 @@ function switchToggleStatus() {
         error: function (xhr, status, error) {
             // Manejar errores
             console.error(error);
-        }*/
+        }
     });
 }
 

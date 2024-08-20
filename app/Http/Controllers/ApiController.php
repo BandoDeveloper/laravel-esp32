@@ -13,11 +13,18 @@ class ApiController extends Controller
         $data = get_object_vars($sql[0]);
         if ($data["estado"] == 'true') {
             DB::insert("insert into estado_led(estado) values(false)");
-            return response("apagado", 200);
+            return response()->json("apagado", 200, [
+                'Content-Type' => 'application/json'
+            ]);
         } else if ($data["estado"] == 'false') {
             DB::insert("insert into estado_led(estado) values(true)");
-            return response("encendido". 200);
+            return response()->json("encendido", 200, [
+                'Content-Type' => 'application/json'
+            ]);
         }
+        return response()->json("ERROR", 500, [
+            'Content-Type' => 'application/json'
+        ]);
     }
     function verDatosSensor()
     {
