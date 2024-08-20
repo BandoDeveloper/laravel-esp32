@@ -10,3 +10,5 @@ Route::get('/verDatosSensor', [ApiController::class,'verDatosSensor'])->name('ve
 Route::post('/verDatosSensor', [ApiController::class,'verDatosSensor'])->name('verDatosSensor');
 Route::get('/obtenerEstadoLed', [ApiController::class,'obtenerEstadoLed'])->name('obtenerEstadoLed');
 Route::post('/obtenerEstadoLed', [ApiController::class,'obtenerEstadoLed'])->name('obtenerEstadoLed');
+Route::get('/toggleLed', [ApiController::class,'toggleLed'])->name('toggleLed');
+Route::post('/toggleLed', [ApiController::class,'toggleLed'])->name('toggleLed');
