@@ -15,7 +15,7 @@ class ApiController extends Controller
     }
     function obtenerEstadoLed(){
         $sql = DB::select("SELECT obtener_ultimo_estado();");
-        var_dump($sql);
+        echo $sql[0];
         /*if($sql["estado"] == 1){
             echo "encendido";
         }
