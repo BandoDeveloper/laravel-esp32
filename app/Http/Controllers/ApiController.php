@@ -12,10 +12,10 @@ class ApiController extends Controller
         $sql = DB::select("SELECT obtener_ultimo_estado() as estado;");
         $data = get_object_vars($sql[0]);
         if ($data["estado"] == 'true') {
-            //DB::insert("insert into estado_led values(null, false)");
+            DB::insert("insert into estado_led(estado) values(false)");
             return response("apagado", 200);
         } else if ($data["estado"] == 'false') {
-            //DB::insert("insert into estado_led values(null, true)");
+            DB::insert("insert into estado_led(estado) values(true)");
             return response("encendido". 200);
         }
     }
