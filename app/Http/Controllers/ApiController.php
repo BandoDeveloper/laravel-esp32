@@ -10,8 +10,12 @@ class ApiController extends Controller
     function switchToggleStatus(){
     }
     function verDatosSensor(){
+        header("");
         $sql = DB::select("SELECT * FROM obtener_lectura();");
-
+        $data = get_object_vars($sql[0]);
+        return response()->json($data, 200, [
+            'Content-Type' => 'application/json'
+        ]);
     }
     function obtenerEstadoLed(){
         $sql = DB::select("SELECT obtener_ultimo_estado();");
