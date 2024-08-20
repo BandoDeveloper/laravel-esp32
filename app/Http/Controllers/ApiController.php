@@ -60,5 +60,19 @@ class ApiController extends Controller
         } else {
             return response("No Data Sent", 400);
         }
+    }    
+    function sendNEOMata(Request $req)
+    {
+        if (isset($req['temp'])) {
+            $temp = $req['temp'];
+            if (isset($req['humed'])) {
+                $humed = $req['humed'];
+                # code...
+                DB::insert("insert into DHT11(temperatura, humedad) values('$temp', '$humed')");
+                return response("Datos insertados", 200);
+            }
+        } else {
+            return response("No Data Sent", 400);
+        }
     }
 }
