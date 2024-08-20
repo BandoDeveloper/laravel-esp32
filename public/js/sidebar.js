@@ -59,7 +59,7 @@ switch_led_status.addEventListener("click", () => {
 
 function switchToggleStatus() {
     $.ajax({
-        url: 'http://bandooriginalespapi.mooo.com/switchToggleStatus.php',
+        /*url: 'http://bandooriginalespapi.mooo.com/switchToggleStatus.php',
         type: 'GET',
         dataType: 'json',
         success: function (response) {
@@ -68,7 +68,7 @@ function switchToggleStatus() {
         error: function (xhr, status, error) {
             // Manejar errores
             console.error(error);
-        }
+        }*/
     });
 }
 
@@ -77,7 +77,7 @@ var currentMarkers = []
 crearMarcador();
 setInterval(crearMarcador, 5000); function crearMarcador() {
     $.ajax({
-        url: 'http://bandooriginalespapi.mooo.com/ver_datos_sensor.php',
+        /*url: 'http://bandooriginalespapi.mooo.com/ver_datos_sensor.php',
         type: 'GET',
         dataType: 'json',
         success: function (response) {
@@ -89,7 +89,7 @@ setInterval(crearMarcador, 5000); function crearMarcador() {
         error: function (xhr, status, error) {
             // Manejar errores
             console.error(error);
-        }
+        }*/
     });
 }
 
