@@ -1,5 +1,5 @@
 <?php
-echo $estado;
+//echo $estado;
 ?>
 <!DOCTYPE html>
 <html lang="en">

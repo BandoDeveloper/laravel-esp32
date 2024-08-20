@@ -15,7 +15,6 @@ class ApiController extends Controller
     }
     function obtenerEstadoLed(){
         $sql = DB::select("SELECT obtener_ultimo_estado();");
-        echo $sql[0];
         return view("estadoLed", [
             "estado"=> $sql[0],
         ]);
