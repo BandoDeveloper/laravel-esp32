@@ -20,25 +20,21 @@
                 <ion-icon name="information-circle-outline" id="info"></ion-icon>
                 <span>Opciones</span>
             </div>
-            <button class="boton">
-                <ion-icon name="add-circle-outline"></ion-icon>
-                <span>Create new</span>
-            </button>
         </div>
         <nav class="navegacion">
             <ul>
                 <li>
                     <a href="#">
                         <ion-icon name="cube"></ion-icon>
-                        <span>Ver mis ventas</span>
+                        <span>Ubicacion del ESP</span>
                     </a>
                 </li>
-                <li>
+                <!--<li>
                     <a href="#">
                         <ion-icon name="people"></ion-icon>
-                        <span>Cerrar Sesion</span>
+                        <span>ADMIN</span>
                     </a>
-                </li>
+                </li>-->
             </ul>
         </nav>
         <div>
