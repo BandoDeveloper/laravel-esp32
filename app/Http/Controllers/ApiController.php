@@ -15,9 +15,7 @@ class ApiController extends Controller
     }
     function obtenerEstadoLed(){
         $sql = DB::select("SELECT obtener_ultimo_estado();");
-        return view("estadoLed", [
-            "estado"=> $sql[0],
-        ]);
+        return response("encendido", 200);
         /*if($sql["estado"] == 1){
             echo "encendido";
         }
