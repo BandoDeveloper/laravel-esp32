@@ -10,7 +10,7 @@ function crearMarcador() {
             var latitud = response[0].latitud;
             var longitud = response[0].longitud;
             var codigo = response[0].codigo;
-            console.log(latitud, longitud), codigo;
+            console.log(latitud, longitud, codigo);
             if (currentMarkers!==null) {
                 for (var i = currentMarkers.length - 1; i >= 0; i--) {
                     currentMarkers[i].remove();
