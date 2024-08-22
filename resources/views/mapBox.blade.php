@@ -38,9 +38,9 @@
         <nav class="navegacion">
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="/">
                         <ion-icon name="cube"></ion-icon>
-                        <span>Ubicacion del ESP</span>
+                        <span>Inicio</span>
                     </a>
                 </li>
                 <!--<li>

@@ -81,7 +81,7 @@ class ApiController extends Controller
     }
     function LocationFromDB()
     {
-        $data = DB::select('SELECT id, temperatura, humedad, fechahora FROM DHT11 ORDER BY id DESC LIMIT 1');
+        $data = DB::select('SELECT latitud, longitud, fechahora, codigo FROM latlon ORDER BY id DESC LIMIT 1');
 
         return response()->json($data, 200, [
             'Content-Type' => 'application/json',
