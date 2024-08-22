@@ -88,4 +88,19 @@ class ApiController extends Controller
             'Custom-Header' => 'Value' // Example of a custom header
         ]);
     }
+    function sendESPLocation(Request $req){
+        if (isset($req['lat'])) {
+            $lat = $req['lat'];
+            if (isset($req['long'])) {
+                $long = $req['long'];
+                if (isset($req['code'])) {
+                    $code = $req['code'];
+                    DB::insert("insert into latlon(latitud, longitud, codigo) values('$lat', '$long', '$code')");
+                    return response("Datos insertados", 200);
+                }
+            }
+        } else {
+            return response("No Data Sent", 400);
+        }
+    }
 }
