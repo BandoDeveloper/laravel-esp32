@@ -1,7 +1,7 @@
 function crearMarcador() {
     $.ajax({
         url: 'https://laravel-esp32.onrender.com/LocationFromDB',
-        type: 'POST',
+        type: 'GET',
         dataType: 'json',
         success: function(response) {
             // Manejar la respuesta

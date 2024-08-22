@@ -16,3 +16,4 @@ Route::get('/sendDHTData', [ApiController::class,'sendDHTData'])->name('sendDHTD
 Route::post('/sendDHTData', [ApiController::class,'sendDHTData'])->name('sendDHTData');
 Route::get('/EspLocation', [ApiController::class,'EspLocation'])->name('EspLocation');
 Route::post('/LocationFromDB', [ApiController::class,'LocationFromDB'])->name('LocationFromDB');
+Route::get('/LocationFromDB', [ApiController::class,'LocationFromDB'])->name('LocationFromDB');
