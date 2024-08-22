@@ -7,7 +7,7 @@ function crearMarcador() {
             // Manejar la respuesta
             console.log(response);
             // Acceder a los datos
-            var latitud = response.latitud;
+            var latitud = response[0].latitud;
             var longitud = response.longitud;
             console.log(latitud, longitud);
             /*if (currentMarkers!==null) {
