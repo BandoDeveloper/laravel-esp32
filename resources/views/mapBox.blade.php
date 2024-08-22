@@ -24,7 +24,54 @@
 </head>
 
 <body>
-    <div id="map"></div>
+    <div class="menu">
+        <ion-icon name="menu"></ion-icon>
+        <ion-icon name="close"></ion-icon>
+    </div>
+    <div class="barra-lateral">
+        <div>
+            <div class="nombre-pagina">
+                <ion-icon name="information-circle-outline" id="info"></ion-icon>
+                <span>Opciones</span>
+            </div>
+        </div>
+        <nav class="navegacion">
+            <ul>
+                <li>
+                    <a href="#">
+                        <ion-icon name="cube"></ion-icon>
+                        <span>Ubicacion del ESP</span>
+                    </a>
+                </li>
+                <!--<li>
+                    <a href="#">
+                        <ion-icon name="people"></ion-icon>
+                        <span>ADMIN</span>
+                    </a>
+                </li>-->
+            </ul>
+        </nav>
+        <div>
+            <div class="linea"></div>
+
+            <div class="modo-oscuro">
+                <div class="info">
+                    <ion-icon name="moon"></ion-icon>
+                    <span>Osucro</span>
+                </div>
+                <div class="switch">
+                    <div class="base">
+                        <div class="circulo">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div id="map"></div>
+    </main>
     <script>
         mapboxgl.accessToken =
             'pk.eyJ1IjoiZXN0ZWJhbi1tZWRyYW5vIiwiYSI6ImNsdWx3a3ZyYzE3ZW4ya3A1aWpxNG13bWgifQ.-9jmRfnuAAThDXtwiW54Jg';
