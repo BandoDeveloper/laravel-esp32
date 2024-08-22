@@ -60,7 +60,7 @@ class ApiController extends Controller
         } else {
             return response("No Data Sent", 400);
         }
-    }    
+    }
     function sendNEOMata(Request $req)
     {
         if (isset($req['temp'])) {
@@ -74,5 +74,18 @@ class ApiController extends Controller
         } else {
             return response("No Data Sent", 400);
         }
+    }
+    function EspLocation()
+    {
+        return view("mapBox", []);
+    }
+    function LocationFromDB()
+    {
+        $data = DB::select('SELECT id, temperatura, humedad, fechahora FROM DHT11 ORDER BY id DESC LIMIT 1');
+
+        return response()->json($data, 200, [
+            'Content-Type' => 'application/json',
+            'Custom-Header' => 'Value' // Example of a custom header
+        ]);
     }
 }

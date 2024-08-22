@@ -14,3 +14,5 @@ Route::get('/toggleLed', [ApiController::class,'switchToggleStatus'])->name('tog
 Route::post('/toggleLed', [ApiController::class,'switchToggleStatus'])->name('toggleLed');
 Route::get('/sendDHTData', [ApiController::class,'sendDHTData'])->name('sendDHTData');
 Route::post('/sendDHTData', [ApiController::class,'sendDHTData'])->name('sendDHTData');
+Route::get('/EspLocation', [ApiController::class,'EspLocation'])->name('EspLocation');
+Route::post('/LocationFromDB', [ApiController::class,'LocationFromDB'])->name('LocationFromDB');
