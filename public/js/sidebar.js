@@ -74,8 +74,8 @@ function switchToggleStatus() {
 
 
 var currentMarkers = []
-crearMarcador();
-setInterval(crearMarcador, 5000); function crearMarcador() {
+verTempHumed();
+setInterval(verTempHumed, 5000); function verTempHumed() {
     $.ajax({
         url: 'https://laravel-esp32.onrender.com/verDatosSensor',
         type: 'GET',
@@ -94,5 +94,5 @@ setInterval(crearMarcador, 5000); function crearMarcador() {
 }
 
 var currentMarkers = []
-crearMarcador();
-setInterval(crearMarcador, 2000);
+verTempHumed();
+setInterval(verTempHumed, 2000);
