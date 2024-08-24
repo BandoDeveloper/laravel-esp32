@@ -77,7 +77,7 @@ var currentMarkers = []
 crearMarcador();
 setInterval(crearMarcador, 5000); function crearMarcador() {
     $.ajax({
-        /*url: 'http://bandooriginalespapi.mooo.com/ver_datos_sensor.php',
+        url: 'https://laravel-esp32.onrender.com/verDatosSensor',
         type: 'GET',
         dataType: 'json',
         success: function (response) {
@@ -89,7 +89,7 @@ setInterval(crearMarcador, 5000); function crearMarcador() {
         error: function (xhr, status, error) {
             // Manejar errores
             console.error(error);
-        }*/
+        }
     });
 }
 
