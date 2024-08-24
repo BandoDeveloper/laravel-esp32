@@ -24,7 +24,7 @@
         <nav class="navegacion">
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="/EspLocation">
                         <ion-icon name="cube"></ion-icon>
                         <span>Ubicacion del ESP</span>
                     </a>
