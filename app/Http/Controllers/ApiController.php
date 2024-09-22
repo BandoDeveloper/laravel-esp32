@@ -12,7 +12,7 @@ class ApiController extends Controller
         $sql = DB::select("SELECT obtener_ultimo_estado() as estado;");
         $data = get_object_vars($sql[0]);
         echo($data['estado']);
-        if ($data['estado'] == true) {
+        if ($data['estado']) {
             /*DB::insert("insert into estado_led(estado) values(false)");
             return response()->json("apagado", 200, [
                 'Content-Type' => 'application/json'
@@ -24,6 +24,9 @@ class ApiController extends Controller
                 'Content-Type' => 'application/json'
             ]);*/
             echo("DATA = BOOL");
+        }
+        else{
+            echo("NINGUNO");
         }
         /*return response()->json("ERROR", 500, [
             'Content-Type' => 'application/json'
