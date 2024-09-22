@@ -11,7 +11,7 @@ class ApiController extends Controller
     {
         $sql = DB::select("SELECT obtener_ultimo_estado() as estado;");
         $data = get_object_vars($sql[0]);
-        //echo($data['estado']);
+        echo($data['estado']);
         if ($data['estado'] == true) {
             /*DB::insert("insert into estado_led(estado) values(false)");
             return response()->json("apagado", 200, [
@@ -25,9 +25,9 @@ class ApiController extends Controller
             ]);*/
             echo("DATA = BOOL");
         }
-        return response()->json("ERROR", 500, [
+        /*return response()->json("ERROR", 500, [
             'Content-Type' => 'application/json'
-        ]);
+        ]);*/
     }
     function verDatosSensor()
     {
