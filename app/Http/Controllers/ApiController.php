@@ -11,13 +11,13 @@ class ApiController extends Controller
     {
         $sql = DB::select("SELECT obtener_ultimo_estado() as estado;");
         $data = get_object_vars($sql[0]);
-        if ($data['estado'] == 'true') {
+        if ($data['estado']) {
             DB::insert("insert into estado_led(estado) values(false)");
             return response()->json("apagado", 200, [
                 'Content-Type' => 'application/json'
             ]);
             echo("DATA = STRING");
-        } else if ($data['estado'] == 'false') {
+        } else if (!$data['estado']) {
             DB::insert("insert into estado_led(estado) values(true)");
             return response()->json("encendido", 200, [
                 'Content-Type' => 'application/json'
