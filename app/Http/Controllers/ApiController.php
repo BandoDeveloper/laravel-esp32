@@ -11,8 +11,7 @@ class ApiController extends Controller
     {
         $sql = DB::select("SELECT obtener_ultimo_estado() as estado;");
         $data = get_object_vars($sql[0]);
-        $echo($sql['Estado']);
-        var_dump($data);
+        var_dump($data[0]);
         /*if ($data["estado"] == 'true') {
             DB::insert("insert into estado_led(estado) values(false)");
             return response()->json("apagado", 200, [
