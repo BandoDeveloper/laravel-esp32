@@ -41,13 +41,13 @@ class ApiController extends Controller
     {
         $sql = DB::select("SELECT obtener_ultimo_estado();");
         $cond = get_object_vars($sql[0])['obtener_ultimo_estado'];
-        if ($cond == 'true') {
+        if ($cond) {
             return response("encendido", 200);
-        } else if ($cond == 'false') {
+        } else if (!$cond) {
             return response("apagado", 200);
         } else {
             return response("Error", 404);
-        }
+        }*/
     }
     function sendDHTData(Request $req)
     {
