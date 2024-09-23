@@ -47,7 +47,7 @@ class ApiController extends Controller
             return response("apagado", 200);
         } else {
             return response("Error", 404);
-        }*/
+        }
     }
     function sendDHTData(Request $req)
     {
