@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-    function switchToggleStatus()
+    /*function switchToggleStatus()
     {
         $sql = DB::select("SELECT obtener_ultimo_estado() as estado;");
         $data = get_object_vars($sql[0]);
@@ -62,8 +62,8 @@ class ApiController extends Controller
         } else {
             return response("No Data Sent", 400);
         }
-    }
-    function EspLocation()
+    }*/
+    function A9gLocation()
     {
         return view("mapBox", []);
     }
@@ -76,7 +76,7 @@ class ApiController extends Controller
             'Custom-Header' => 'Value' // Example of a custom header
         ]);
     }
-    function sendESPLocation(Request $req){
+    function A9gLocation(Request $req){
         if (isset($req['lat'])) {
             $lat = $req['lat'];
             if (isset($req['long'])) {
