@@ -76,7 +76,7 @@ class ApiController extends Controller
             'Custom-Header' => 'Value' // Example of a custom header
         ]);
     }
-    function A9gLocation(Request $req){
+    function A9gLocationDB(Request $req){
         if (isset($req['lat'])) {
             $lat = $req['lat'];
             if (isset($req['long'])) {
