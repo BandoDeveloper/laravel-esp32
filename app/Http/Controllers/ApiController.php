@@ -76,6 +76,11 @@ class ApiController extends Controller
             'Custom-Header' => 'Value' // Example of a custom header
         ]);
     }
+    function PhoneLocation(Request $req){
+        $data = $req->all();
+        echo $data['latitud'];
+        echo $data['longitud'];
+    }
     function A9gLocationDB(Request $req){
         if (isset($req['lat'])) {
             $lat = $req['lat'];

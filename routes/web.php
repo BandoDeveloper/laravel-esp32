@@ -18,3 +18,6 @@ Route::get('/LocationFromDB', [ApiController::class,'LocationFromDB'])->name('Lo
 //Route::post('/sendDHTData', [ApiController::class,'sendDHTData'])->name('sendDHTData');
 Route::get('/sendA9gLocation', [ApiController::class,'sendESPLocation'])->name('sendA9gLocation');
 Route::post('/sendA9gLocation', [ApiController::class,'sendESPLocation'])->name('sendA9gLocation');
+//Phone location
+Route::get('/phoneLocation', [ApiController::class,'phoneLocation'])->name('phoneLocation');
+Route::post('/phoneLocation', [ApiController::class,'phoneLocation'])->name('phoneLocation');
