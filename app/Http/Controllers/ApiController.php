@@ -91,9 +91,9 @@ class ApiController extends Controller
         echo "Latitud";
         echo $sizeInDegreesLat;
         // Calcular el tamaño en grados de longitud basado en la latitud
-        /*$sizeInDegreesLon = 15 / ($earthRadius * cos(deg2rad($center['lat']))) * (180 / pi());*/
+        $sizeInDegreesLon = 15 / ($earthRadius * cos(deg2rad($centerPoint['lat']))) * (180 / pi());
         echo "Longitud";
-        echo deg2rad($centerPoint['lat']);
+        echo $sizeInDegreesLon;
         // Calcular los cuatro vértices
         /*$northEast = [
             'lat' => $centerPoint['lat'] + $sizeInDegreesLat,
