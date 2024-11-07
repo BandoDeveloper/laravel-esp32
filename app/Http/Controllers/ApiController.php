@@ -80,7 +80,10 @@ class ApiController extends Controller
         $data = $req->all();
         echo($data['latitud']);
         echo($data['longitud']);
-        //$centerPoint = ['lat' => , 'lon' => ];
+        $latitud = $data['latitud'];
+        $longitud = $data['longitud'];
+        $centerPoint = ['lat' => $latitud, 'lon' => $longitud];
+        var_dump($centerPoint)
         //$fence = calculateSquareVertices($centerPoint, 15);
     }
     function calculateSquareVertices($center, $sizeInMeters) {
