@@ -124,6 +124,15 @@ class ApiController extends Controller
             return response()->json(['error' => 'Error en la inserción: ' . $e->getMessage()], 400);    
         }
     }
+    function phoneGeocerca()
+    {
+        header("");
+        $sql = DB::select("SELECT geocerca from latlon_telefono ORDER BY id DESC LIMIT 1");
+        $data = get_object_vars($sql[0]);
+        return response()->json($data, 200, [
+            'Content-Type' => 'application/json'
+        ]);
+    }
     function A9gLocationDB(Request $req){
         if (isset($req['lat'])) {
             $lat = $req['lat'];
