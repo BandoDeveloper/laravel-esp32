@@ -84,9 +84,9 @@ class ApiController extends Controller
         var_dump($centerPoint);
         $earthRadius = 6371000;
         // Convertir el tamaño de metros a grados
-        $sizeInDegreesLat = 15 / $earthRadius * (180 / pi());
+        $sizeInDegreesLat = 50 / $earthRadius * (180 / pi());
         // Calcular el tamaño en grados de longitud basado en la latitud
-        $sizeInDegreesLon = 15 / ($earthRadius * cos(deg2rad($centerPoint['lat']))) * (180 / pi());
+        $sizeInDegreesLon = 50 / ($earthRadius * cos(deg2rad($centerPoint['lat']))) * (180 / pi());
         // Calcular los cuatro vértices
         $northEast = [
             'lat' => $centerPoint['lat'] + $sizeInDegreesLat,
