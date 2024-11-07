@@ -188,9 +188,9 @@ class ApiController extends Controller
             ]
         ];
         // Para convertirlo a JSON, usarías:
-        $dataForJS = json_encode($data);
+        $data = json_encode($dataForJS);
         // Mostrar el resultado JSON (opcional)
-        echo $dataForJS;
+        echo $data;
     }
     function A9gLocationDB(Request $req){
         if (isset($req['lat'])) {
