@@ -130,9 +130,9 @@ class ApiController extends Controller
         $json_geo = $geocerca['geocerca'];
         $fence = json_decode($json_geo, true);
         $firstPoint = $fence['coordinates'][0]; // Coordenadas del norte este
-        var_dump($firstPoint);
-        $lastPoint = $fence['coordinates'][3]; // Coordenadas del sur este
-        var_dump($lastPoint);
+        echo $firstPoint['lat'];
+        echo $firstPoint['lon'];
+        $lastPoint = $fence['coordinates'][2]; // Coordenadas del sur este
         $data = $req->all();
         $dataLoc = $data['latlon'];
         $coordinates = explode(",", $dataLoc);
