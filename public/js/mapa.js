@@ -3,7 +3,7 @@ var currentFence; // Variable para almacenar la geocerca
 
 function crearMarcador() {
     $.ajax({
-        url: 'https://laravel-esp32.onrender.com/LocationFromDB',
+        url: 'https://laravel-esp32.onrender.com/phoneGeocerca',
         type: 'GET',
         dataType: 'json',
         success: function(response) {
