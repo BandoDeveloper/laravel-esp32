@@ -130,8 +130,6 @@ class ApiController extends Controller
         $json_geo = $geocerca['geocerca'];
         $fence = json_decode($json_geo, true);
         $firstPoint = $fence['coordinates'][0]; // Coordenadas del norte este
-        echo $firstPoint['lat'];
-        echo $firstPoint['lon'];
         $lastPoint = $fence['coordinates'][2]; // Coordenadas del sur este
         $data = $req->all();
         $dataLoc = $data['latlon'];
@@ -141,7 +139,13 @@ class ApiController extends Controller
             $longitude = floatval(trim($coordinates[1])); // Convertir a float y eliminar espacios
             echo $latitude;
             echo $longitude;
-            try {
+            if($latitude <= $firstPoint['lat'] && $longitude <= $firstPoin['lon'] && $latitude >= $lastPoint['lat'] && $longitude >= $lastPoint['lon']){
+                echo "dentro";
+            }
+            else{
+                echo "fuera";
+            }
+            /*try {
                 // Realiza la inserción
                 DB::insert("insert into latlon_a9g(latitud, longitud, codigo) values(?, ?, ?)", [$latitude, $longitude, 10]);
                 // Respuesta exitosa
@@ -149,7 +153,7 @@ class ApiController extends Controller
             } catch (QueryException $e) {
                 // Manejo de errores
                 //return response()->json(['error' => 'Error en la inserción: ' . $e->getMessage()], 400);
-            }
+            }*/
         } else {
             // Manejar el caso en que no se obtienen dos coordenadas
             echo "Wrong";
