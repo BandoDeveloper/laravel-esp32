@@ -41,13 +41,16 @@ function crearMarcador() {
 
 function crearGeocerca(response) {
     // Suponiendo que la geocerca viene en la respuesta
-    // Aquí debes adaptar la lógica según la estructura de tu respuesta
     var geocerca = response[0].geocerca; // Cambia esto según tu estructura real
 
     // Borrar la geocerca anterior si existe
     if (currentFence) {
-        map.removeLayer('fence-layer');
-        map.removeSource('fence');
+        if (map.getLayer('fence-layer')) {
+            map.removeLayer('fence-layer');
+        }
+        if (map.getSource('fence')) {
+            map.removeSource('fence');
+        }
     }
 
     // Crear la nueva geocerca
@@ -73,6 +76,9 @@ function crearGeocerca(response) {
             'fill-outline-color': 'rgba(255, 0, 0, 1)' // Color rojo sólido para el borde
         }
     });
+
+    // Actualizar la referencia a la geocerca actual
+    currentFence = true; // Esto puede ser un objeto o simplemente un booleano, según tu lógica
 }
 
 // Inicializar el primer marcador y la geocerca
