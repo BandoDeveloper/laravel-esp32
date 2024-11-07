@@ -133,6 +133,15 @@ class ApiController extends Controller
             $longitude = floatval(trim($coordinates[1])); // Convertir a float y eliminar espacios
             echo $latitude;
             echo $longitude;
+            try {
+                // Realiza la inserción
+                DB::insert("insert into latlon_a9g(latitud, longitud, codigo) values(?, ?, ?)", [$latitud, $longitud, 10]);
+                // Respuesta exitosa
+                return response()->json(['message' => 'Inserción exitosa.'], 200);
+            } catch (QueryException $e) {
+                // Manejo de errores
+                return response()->json(['error' => 'Error en la inserción: ' . $e->getMessage()], 400);    
+            }
         } else {
             // Manejar el caso en que no se obtienen dos coordenadas
             echo "Wrong";
