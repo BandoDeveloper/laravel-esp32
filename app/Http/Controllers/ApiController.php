@@ -135,7 +135,7 @@ class ApiController extends Controller
             echo $longitude;
         } else {
             // Manejar el caso en que no se obtienen dos coordenadas
-            echo "Wrong"
+            echo "Wrong";
         }
         /*$latitud = substr($data['latitud'], 0, 10);
         $longitud = substr($data['longitud'], 0, 10);
