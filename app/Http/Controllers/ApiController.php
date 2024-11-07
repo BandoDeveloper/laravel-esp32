@@ -125,6 +125,9 @@ class ApiController extends Controller
         }
     }
     function a9glocationFromsms(Request $req){
+        $sql = DB::select("SELECT geocerca from latlon_telefono ORDER BY id DESC LIMIT 1");
+        $geocerca = json_decode($sql);
+        var_dump($geocerca);
         $data = $req->all();
         $dataLoc = $data['latlon'];
         $coordinates = explode(",", $dataLoc);
@@ -137,7 +140,7 @@ class ApiController extends Controller
                 // Realiza la inserción
                 DB::insert("insert into latlon_a9g(latitud, longitud, codigo) values(?, ?, ?)", [$latitude, $longitude, 10]);
                 // Respuesta exitosa
-                return response()->json(['message' => 'Inserción exitosa.'], 200);
+                return response()->json(['message' => ''], 200);
             } catch (QueryException $e) {
                 // Manejo de errores
                 return response()->json(['error' => 'Error en la inserción: ' . $e->getMessage()], 400);
