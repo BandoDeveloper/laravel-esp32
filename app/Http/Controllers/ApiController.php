@@ -76,11 +76,11 @@ class ApiController extends Controller
             'Custom-Header' => 'Value' // Example of a custom header
         ]);
     }
-    function PhoneLocation(Request $req){
+    function phoneLocation(Request $req){
         $data = $req->all();
         $centerPoint = ['lat' => $data['latitud'], 'lon' => $data['longitud']];
         $fence = calculateSquareVertices($centerPoint, 15);
-        var_dump($fence);
+        $echo("Succes");
     }
     function calculateSquareVertices($center, $sizeInMeters) {
         // Radio de la Tierra en metros
