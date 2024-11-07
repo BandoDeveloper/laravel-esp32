@@ -124,6 +124,31 @@ class ApiController extends Controller
             return response()->json(['error' => 'Error en la inserción: ' . $e->getMessage()], 400);    
         }
     }
+    function a9glocationFromsms(Request $req){
+        $data = $req->all();
+        $dataLoc = $data['latlon'];
+        $coordinates = explode(",", $dataLoc);
+        if (count($coordinates) === 2) {
+            $latitude = floatval(trim($coordinates[0]));  // Convertir a float y eliminar espacios
+            $longitude = floatval(trim($coordinates[1])); // Convertir a float y eliminar espacios
+            echo $latitude;
+            echo $longitude;
+        } else {
+            // Manejar el caso en que no se obtienen dos coordenadas
+            echo "Wrong"
+        }
+        /*$latitud = substr($data['latitud'], 0, 10);
+        $longitud = substr($data['longitud'], 0, 10);
+        try {
+            // Realiza la inserción
+            DB::insert("insert into latlon_a9g(latitud, longitud, codigo) values(?, ?, ?)", [$latitud, $longitud, 10]);
+            // Respuesta exitosa
+            return response()->json(['message' => 'Inserción exitosa.'], 200);
+        } catch (QueryException $e) {
+            // Manejo de errores
+            return response()->json(['error' => 'Error en la inserción: ' . $e->getMessage()], 400);    
+        }*/
+    }
     function phoneGeocerca()
     {
         header("");
