@@ -162,33 +162,35 @@ class ApiController extends Controller
         $geocerca = get_object_vars($sql[0]);
         $json_geo = $geocerca['geocerca'];
         $fence = json_decode($json_geo, true);
+        $first = $fence['coordinates'][0]; // Coordenadas del norte este
+        $second = $fence['coordinates'][1]; // Coordenadas del sur este
+        $third = $fence['coordinates'][2]; // Coordenadas del norte este
+        $last = $fence['coordinates'][3]; // Coordenadas del sur este
         $sql = DB::select("SELECT latitud, longitud, codigo from latlon_a9g ORDER BY id DESC LIMIT 1");
         $locationData = get_object_vars($sql[0]);
         $latitud = $locationData['latitud'];
         $longitud = $locationData['longitud'];
         $codigo = $locationData['codigo'];
-        echo $latitud;
-        echo $longitud;
-        echo $codigo;
-        /*$dataForJS = [
+        $dataForJS = [
             [
-                "latitud" => 40.7128,
-                "longitud" => -74.0060,
-                "codigo" => "ABC123",
+                "latitud" => $latitud,
+                "longitud" => $longitud,
+                "codigo" => $codigo,
                 "geocerca" => [
                     "coordinates" => [
-                        ["latitud" => 40.7138, "longitud" => -74.0070],
-                        ["latitud" => 40.7138, "longitud" => -74.0050],
-                        ["latitud" => 40.7118, "longitud" => -74.0050],
-                        ["latitud" => 40.7118, "longitud" => -74.0070],
-                        ["latitud" => 40.7138, "longitud" => -74.0070] // Debe cerrarse el polígono
+                        ["latitud" => $first['lat'], "longitud" => $first['lon']],
+                        ["latitud" => $second['lat'], "longitud" => $second['lon']],
+                        ["latitud" => $third['lat'], "longitud" => $third['lon']],
+                        ["latitud" => $last['lat'], "longitud" => $last['lon']],
+                        ["latitud" => $first['lat'], "longitud" => $first['lon']] // Debe cerrarse el polígono
                     ]
                 ]
             ]
-        ];*/
-        return response()->json($data, 200, [
-            'Content-Type' => 'application/json'
-        ]);
+        ];
+        // Para convertirlo a JSON, usarías:
+        $jsonData = json_encode($data);
+        // Mostrar el resultado JSON (opcional)
+        echo $jsonData;
     }
     function A9gLocationDB(Request $req){
         if (isset($req['lat'])) {
