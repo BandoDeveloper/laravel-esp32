@@ -87,8 +87,8 @@ class ApiController extends Controller
         try{
             $fence = calculateSquareVertices($centerPoint, 15);
             var_dump($fence);
-        }catch(\Throwable $th){
-            throw $th;
+        }catch(Exception $e){
+            echo $e;
         }
     }
     function calculateSquareVertices($center, $sizeInMeters) {
