@@ -126,8 +126,7 @@ class ApiController extends Controller
     }
     function a9glocationFromsms(Request $req){
         $sql = DB::select("SELECT geocerca from latlon_telefono ORDER BY id DESC LIMIT 1");
-        $geocerca = json_decode($sql);
-        var_dump($geocerca);
+        $geocerca = json_decode($sql[0]);
         $data = $req->all();
         $dataLoc = $data['latlon'];
         $coordinates = explode(",", $dataLoc);
