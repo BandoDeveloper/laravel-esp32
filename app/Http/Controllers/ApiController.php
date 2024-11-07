@@ -78,52 +78,50 @@ class ApiController extends Controller
     }
     function phoneLocation(Request $req){
         $data = $req->all();
-        echo($data['latitud']);
-        echo($data['longitud']);
         $latitud = $limitedString = substr($data['latitud'], 0, 10);
         $longitud = substr($data['longitud'], 0, 10);
         $centerPoint = ['lat' => (float) $latitud, 'lon' => (float) $longitud];
         var_dump($centerPoint);
         $earthRadius = 6371000;
-        echo $earthRadius;
         // Convertir el tamaño de metros a grados
         $sizeInDegreesLat = 15 / $earthRadius * (180 / pi());
-        echo "Latitud";
-        echo $sizeInDegreesLat;
         // Calcular el tamaño en grados de longitud basado en la latitud
         $sizeInDegreesLon = 15 / ($earthRadius * cos(deg2rad($centerPoint['lat']))) * (180 / pi());
-        echo "Longitud";
-        echo $sizeInDegreesLon;
         // Calcular los cuatro vértices
-        /*$northEast = [
+        echo("Obtencion de vectores");
+        $northEast = [
             'lat' => $centerPoint['lat'] + $sizeInDegreesLat,
             'lon' => $centerPoint['lon'] + $sizeInDegreesLon
+        ];
+        var_dump($northEast);
+        $northWest = [
+            'lat' => $centerPoint['lat'] + $sizeInDegreesLat,
+            'lon' => $centerPoint['lon'] - $sizeInDegreesLon
+        ];
+        var_dump($northWest);
+        $southEast = [
+            'lat' => $centerPoint['lat'] - $sizeInDegreesLat,
+            'lon' => $centerPoint['lon'] + $sizeInDegreesLon
+        ];
+        var_dump($southEast);
+        $southWest = [
+            'lat' => $centerPoint['lat'] - $sizeInDegreesLat,
+            'lon' => $centerPoint['lon'] - $sizeInDegreesLon
+        ];
+        var_dump($southWest);
+        /*return [
+            'northEast' => $northEast,
+            'northWest' => $northWest,
+            'southEast' => $southEast,
+            'southWest' => $southWest
         ];*/
     }
     function calculateSquareVertices($center, $sizeInMeters) {
         
 
-        $northWest = [
-            'lat' => $center['lat'] + $sizeInDegreesLat,
-            'lon' => $center['lon'] - $sizeInDegreesLon
-        ];
 
-        $southEast = [
-            'lat' => $center['lat'] - $sizeInDegreesLat,
-            'lon' => $center['lon'] + $sizeInDegreesLon
-        ];
 
-        $southWest = [
-            'lat' => $center['lat'] - $sizeInDegreesLat,
-            'lon' => $center['lon'] - $sizeInDegreesLon
-        ];
 
-        return [
-            'northEast' => $northEast,
-            'northWest' => $northWest,
-            'southEast' => $southEast,
-            'southWest' => $southWest
-        ];
     }
     function A9gLocationDB(Request $req){
         if (isset($req['lat'])) {
