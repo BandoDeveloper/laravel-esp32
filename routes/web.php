@@ -24,3 +24,6 @@ Route::post('/phoneLocation', [ApiController::class,'phoneLocation'])->name('pho
 //Phone GEO
 Route::get('/phoneGeocerca', [ApiController::class,'phoneGeocerca'])->name('phoneGeocerca');
 Route::post('/phoneGeocerca', [ApiController::class,'phoneGeocerca'])->name('phoneGeocerca');
+//A9G location
+Route::get('/a9glocationFromsms', [ApiController::class,'a9glocationFromsms'])->name('a9glocationFromsms');
+Route::post('/a9glocationFromsms', [ApiController::class,'a9glocationFromsms'])->name('a9glocationFromsms');
