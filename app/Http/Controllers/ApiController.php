@@ -84,28 +84,19 @@ class ApiController extends Controller
         $longitud = substr($data['longitud'], 0, 10);
         $centerPoint = ['lat' => (float) $latitud, 'lon' => (float) $longitud];
         var_dump($centerPoint);
-        try{
-            $fence = calculateSquareVertices($centerPoint, 15);
-            var_dump($fence);
-        }catch(Exception $e){
-            echo $e;
-        }
-    }
-    function calculateSquareVertices($center, $sizeInMeters) {
-        // Radio de la Tierra en metros
-        $earthRadius = 6371000; // en metros
-
+        $earthRadius = 6371000;
         // Convertir el tamaño de metros a grados
-        $sizeInDegreesLat = $sizeInMeters / $earthRadius * (180 / pi());
-
+        $sizeInDegreesLat = 15 / $earthRadius * (180 / pi());
         // Calcular el tamaño en grados de longitud basado en la latitud
-        $sizeInDegreesLon = $sizeInMeters / ($earthRadius * cos(deg2rad($center['lat']))) * (180 / pi());
-
+        $sizeInDegreesLon = 15 / ($earthRadius * cos(deg2rad($center['lat']))) * (180 / pi());
         // Calcular los cuatro vértices
         $northEast = [
-            'lat' => $center['lat'] + $sizeInDegreesLat,
-            'lon' => $center['lon'] + $sizeInDegreesLon
+            'lat' => $centerPoint['lat'] + $sizeInDegreesLat,
+            'lon' => $centerPoint['lon'] + $sizeInDegreesLon
         ];
+    }
+    function calculateSquareVertices($center, $sizeInMeters) {
+        
 
         $northWest = [
             'lat' => $center['lat'] + $sizeInDegreesLat,
