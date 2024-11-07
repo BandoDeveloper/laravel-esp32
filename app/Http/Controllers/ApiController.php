@@ -78,7 +78,9 @@ class ApiController extends Controller
     }
     function phoneLocation(Request $req){
         $data = $req->all();
-        $centerPoint = ['lat' => $data['latitud'], 'lon' => $data['longitud']];
+        echo($data['latitud']);
+        echo($data['longitud']);
+        //$centerPoint = ['lat' => , 'lon' => ];
         //$fence = calculateSquareVertices($centerPoint, 15);
         $echo("Succes");
     }
