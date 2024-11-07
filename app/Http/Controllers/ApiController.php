@@ -81,7 +81,6 @@ class ApiController extends Controller
         $latitud = $limitedString = substr($data['latitud'], 0, 10);
         $longitud = substr($data['longitud'], 0, 10);
         $centerPoint = ['lat' => (float) $latitud, 'lon' => (float) $longitud];
-        var_dump($centerPoint);
         $earthRadius = 6371000;
         // Convertir el tamaño de metros a grados
         $sizeInDegreesLat = 100 / $earthRadius * (180 / pi());
@@ -104,7 +103,6 @@ class ApiController extends Controller
             'lat' => $centerPoint['lat'] - $sizeInDegreesLat,
             'lon' => $centerPoint['lon'] - $sizeInDegreesLon
         ];
-        echo("Obtencion de vector para la geocerca");
         $fence = [
             'coordinates' => [
                 $northEast,
