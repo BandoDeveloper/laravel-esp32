@@ -137,26 +137,22 @@ class ApiController extends Controller
         if (count($coordinates) === 2) {
             $latitude = floatval(trim($coordinates[0]));  // Convertir a float y eliminar espacios
             $longitude = floatval(trim($coordinates[1])); // Convertir a float y eliminar espacios
-            echo $latitude;
-            echo $longitude;
-            if($latitude <= $firstPoint['lat'] && $longitude <= $firstPoin['lon'] && $latitude >= $lastPoint['lat'] && $longitude >= $lastPoint['lon']){
-                echo "dentro";
-            }
-            else{
-                echo "fuera";
-            }
-            /*try {
+            try {
                 // Realiza la inserción
                 DB::insert("insert into latlon_a9g(latitud, longitud, codigo) values(?, ?, ?)", [$latitude, $longitude, 10]);
-                // Respuesta exitosa
-                //return response()->json(['message' => ''], 200);
+                if($latitude <= $firstPoint['lat'] && $longitude <= $firstPoin['lon'] && $latitude >= $lastPoint['lat'] && $longitude >= $lastPoint['lon']){
+                    return response()->json(['message' => 'Dentro'], 200);
+                }
+                else{
+                    return response()->json(['message' => 'fuera'], 200);
+                }
             } catch (QueryException $e) {
                 // Manejo de errores
-                //return response()->json(['error' => 'Error en la inserción: ' . $e->getMessage()], 400);
-            }*/
+                return response()->json(['error' => 'Error en la inserción: ' . $e->getMessage()], 400);
+            }
         } else {
             // Manejar el caso en que no se obtienen dos coordenadas
-            echo "Wrong";
+            return response()->json(['error' => 'Error en la inserción: ' . $e->getMessage()], 400);
         }
     }
     function phoneGeocerca()
