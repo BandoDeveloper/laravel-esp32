@@ -128,7 +128,11 @@ class ApiController extends Controller
         $sql = DB::select("SELECT geocerca from latlon_telefono ORDER BY id DESC LIMIT 1");
         $geocerca = get_object_vars($sql[0]);
         $json_geo = $geocerca['geocerca'];
-        var_dump(json_decode($json_geo, true));
+        $fence = json_decode($json_geo, true));
+        $firstPoint = $fence['coordinates'][0]; // Coordenadas del norte este
+        var_dump($firstPoint);
+        $lastPoint = $fence['coordinates'][3]; // Coordenadas del sur este
+        var_dump($lastPoint);
         $data = $req->all();
         $dataLoc = $data['latlon'];
         $coordinates = explode(",", $dataLoc);
