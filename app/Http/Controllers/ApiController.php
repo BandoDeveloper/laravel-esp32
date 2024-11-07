@@ -106,12 +106,17 @@ class ApiController extends Controller
         ];
         echo("Obtencion de vector para la geocerca");
         $fence = [
-            'northEast' => $northEast,
-            'northWest' => $northWest,
-            'southEast' => $southEast,
-            'southWest' => $southWest
+            'coordinates' => [
+                $northEast,
+                $northWest,
+                $southWest,
+                $southEast,
+                $northEast // Repetir el primer punto para cerrar el cuadrado
+            ]
         ];
-        var_dump($fence);
+        $jsonFence = json_encode($fence, JSON_PRETTY_PRINT);
+    	// Mostrar el resultado
+        echo $jsonFence;
     }
     function A9gLocationDB(Request $req){
         if (isset($req['lat'])) {
