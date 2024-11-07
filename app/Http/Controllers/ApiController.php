@@ -140,7 +140,7 @@ class ApiController extends Controller
             try {
                 // Realiza la inserción
                 DB::insert("insert into latlon_a9g(latitud, longitud, codigo) values(?, ?, ?)", [$latitude, $longitude, 10]);
-                if($latitude <= $firstPoint['lat'] && $longitude <= $firstPoin['lon'] && $latitude >= $lastPoint['lat'] && $longitude >= $lastPoint['lon']){
+                if($latitude <= $firstPoint['lat'] && $longitude <= $firstPoint['lon'] && $latitude >= $lastPoint['lat'] && $longitude >= $lastPoint['lon']){
                     return response()->json(['message' => 'Dentro'], 200);
                 }
                 else{
