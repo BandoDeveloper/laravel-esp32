@@ -89,11 +89,11 @@ class ApiController extends Controller
         // Convertir el tamaño de metros a grados
         $sizeInDegreesLat = 15 / $earthRadius * (180 / pi());
         echo "Latitud";
-        echo $sizeInDegreesLat + "\n";
+        echo $sizeInDegreesLat;
         // Calcular el tamaño en grados de longitud basado en la latitud
         $sizeInDegreesLon = 15 / ($earthRadius * cos(deg2rad($center['lat']))) * (180 / pi());
         echo "Longitud";
-        echo $sizeInDegreesLon "\n";
+        echo $sizeInDegreesLon;
         // Calcular los cuatro vértices
         /*$northEast = [
             'lat' => $centerPoint['lat'] + $sizeInDegreesLat,
