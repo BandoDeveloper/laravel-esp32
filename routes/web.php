@@ -21,3 +21,6 @@ Route::post('/sendA9gLocation', [ApiController::class,'sendESPLocation'])->name(
 //Phone location
 Route::get('/phoneLocation', [ApiController::class,'phoneLocation'])->name('phoneLocation');
 Route::post('/phoneLocation', [ApiController::class,'phoneLocation'])->name('phoneLocation');
+//Phone GEO
+Route::get('/phoneLocation', [ApiController::class,'phoneLocation'])->name('phoneLocation');
+Route::post('/phoneLocation', [ApiController::class,'phoneLocation'])->name('phoneLocation');
