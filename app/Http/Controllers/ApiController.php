@@ -88,40 +88,30 @@ class ApiController extends Controller
         // Calcular el tamaño en grados de longitud basado en la latitud
         $sizeInDegreesLon = 15 / ($earthRadius * cos(deg2rad($centerPoint['lat']))) * (180 / pi());
         // Calcular los cuatro vértices
-        echo("Obtencion de vectores");
         $northEast = [
             'lat' => $centerPoint['lat'] + $sizeInDegreesLat,
             'lon' => $centerPoint['lon'] + $sizeInDegreesLon
         ];
-        var_dump($northEast);
         $northWest = [
             'lat' => $centerPoint['lat'] + $sizeInDegreesLat,
             'lon' => $centerPoint['lon'] - $sizeInDegreesLon
         ];
-        var_dump($northWest);
         $southEast = [
             'lat' => $centerPoint['lat'] - $sizeInDegreesLat,
             'lon' => $centerPoint['lon'] + $sizeInDegreesLon
         ];
-        var_dump($southEast);
         $southWest = [
             'lat' => $centerPoint['lat'] - $sizeInDegreesLat,
             'lon' => $centerPoint['lon'] - $sizeInDegreesLon
         ];
-        var_dump($southWest);
-        /*return [
+        echo("Obtencion de vector para la geocerca");
+        $fence = [
             'northEast' => $northEast,
             'northWest' => $northWest,
             'southEast' => $southEast,
             'southWest' => $southWest
-        ];*/
-    }
-    function calculateSquareVertices($center, $sizeInMeters) {
-        
-
-
-
-
+        ];
+        var_dump($fence);
     }
     function A9gLocationDB(Request $req){
         if (isset($req['lat'])) {
