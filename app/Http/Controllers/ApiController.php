@@ -116,7 +116,15 @@ class ApiController extends Controller
         ];
         $jsonFence = json_encode($fence, JSON_PRETTY_PRINT);
     	// Mostrar el resultado
-        echo $jsonFence;
+        try {
+            // Realiza la inserción
+            DB::insert("insert into latlon_telefono(latitud, longitud, geocerca) values(?, ?, ?)", [$latitud, $longitud, $jsonFence]);
+            // Respuesta exitosa
+            return response()->json(['message' => 'Inserción exitosa.'], 200);
+        } catch (QueryException $e) {
+            // Manejo de errores
+            return response()->json(['error' => 'Error en la inserción: ' . $e->getMessage()], 400);    
+        }
     }
     function A9gLocationDB(Request $req){
         if (isset($req['lat'])) {
