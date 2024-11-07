@@ -82,7 +82,7 @@ class ApiController extends Controller
         echo($data['longitud']);
         $latitud = $limitedString = substr($data['latitud'], 0, 10);
         $longitud = substr($data['longitud'], 0, 10);
-        $centerPoint = ['lat' => $latitud, 'lon' => $longitud];
+        $centerPoint = ['lat' => (float) $latitud, 'lon' => (float) $longitud];
         var_dump($centerPoint);
         try{
             $fence = calculateSquareVertices($centerPoint, 15);
