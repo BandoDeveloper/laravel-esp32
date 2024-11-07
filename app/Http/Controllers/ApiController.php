@@ -163,7 +163,13 @@ class ApiController extends Controller
         $json_geo = $geocerca['geocerca'];
         $fence = json_decode($json_geo, true);
         $sql = DB::select("SELECT latitud, longitud, codigo from latlon_a9g ORDER BY id DESC LIMIT 1");
-        var_dump(get_object_vars($sql[0]));
+        $locationData = get_object_vars($sql[0]);
+        $latitud = $locationData['latitud'];
+        $longitud = $locationData['longitud'];
+        $codigo = $locationData['codigo'];
+        echo $latitud;
+        echo $longitud;
+        echo $codigo;
         /*$dataForJS = [
             [
                 "latitud" => 40.7128,
