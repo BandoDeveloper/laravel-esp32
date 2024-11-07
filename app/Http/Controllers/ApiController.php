@@ -84,7 +84,12 @@ class ApiController extends Controller
         $longitud = substr($data['longitud'], 0, 10);
         $centerPoint = ['lat' => $latitud, 'lon' => $longitud];
         var_dump($centerPoint);
-        //$fence = calculateSquareVertices($centerPoint, 15);
+        try{
+            $fence = calculateSquareVertices($centerPoint, 15);
+            var_dump($fence);
+        }catch(\Throwable $th){
+            throw $th;
+        }
     }
     function calculateSquareVertices($center, $sizeInMeters) {
         // Radio de la Tierra en metros
