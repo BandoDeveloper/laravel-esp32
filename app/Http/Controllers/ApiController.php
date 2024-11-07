@@ -159,7 +159,27 @@ class ApiController extends Controller
     {
         header("");
         $sql = DB::select("SELECT geocerca from latlon_telefono ORDER BY id DESC LIMIT 1");
-        $data = get_object_vars($sql[0]);
+        $geocerca = get_object_vars($sql[0]);
+        $json_geo = $geocerca['geocerca'];
+        $fence = json_decode($json_geo, true);
+        $sql = DB::select("SELECT latitud, longitud, codigo from latlon_a9g ORDER BY id DESC LIMIT 1");
+        var_dump(get_object_vars($sql[0]));
+        /*$dataForJS = [
+            [
+                "latitud" => 40.7128,
+                "longitud" => -74.0060,
+                "codigo" => "ABC123",
+                "geocerca" => [
+                    "coordinates" => [
+                        ["latitud" => 40.7138, "longitud" => -74.0070],
+                        ["latitud" => 40.7138, "longitud" => -74.0050],
+                        ["latitud" => 40.7118, "longitud" => -74.0050],
+                        ["latitud" => 40.7118, "longitud" => -74.0070],
+                        ["latitud" => 40.7138, "longitud" => -74.0070] // Debe cerrarse el polígono
+                    ]
+                ]
+            ]
+        ];*/
         return response()->json($data, 200, [
             'Content-Type' => 'application/json'
         ]);
