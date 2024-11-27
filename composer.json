@@ -8,7 +8,7 @@
         "php": "^8.2",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
-        "fruitcake/laravel-cors": "^2.0" // Agrega esta línea
+        "fruitcake/laravel-cors": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
