@@ -49,7 +49,6 @@ function agregarGeocercas(geojson) {
 
         // Agregar el evento de clic para la capa de la geocerca
         map.on('click', layerId, function (e) {
-            const feature = e.features[0]; // Obtener la característica que fue clickeada
             // Mostrar el pop-up de confirmación
             Swal.fire({
                 title: '¿Estás seguro?',
