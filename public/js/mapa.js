@@ -215,6 +215,7 @@ guardarButton.onclick = function() {
         dataType: 'json',
         success: function(data) {
             console.log(data);
+            location.reload();
         },
         error: function(xhr, status, error) {
             console.error(error);
