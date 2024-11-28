@@ -35,7 +35,7 @@
     <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- cambiar a  ruta de render al hacer deploy -->
-    <script src="http://127.0.0.1:8000/js/mapa.js"></script>
+    <script src="https://laravel-esp32.onrender.com/js/mapa.js"></script>
 </body>
 
 </html>
