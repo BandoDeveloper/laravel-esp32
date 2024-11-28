@@ -48,8 +48,28 @@ function agregarGeocercas(geojson) {
         });
 
         // Agregar el evento de clic para la capa de la geocerca
-        map.on('click', layerId, function(e) {
-            eliminarGeocercaSecundaria(feature.id); // Llama a la función de eliminación
+        map.on('click', layerId, function (e) {
+            const feature = e.features[0]; // Obtener la característica que fue clickeada
+            // Mostrar el pop-up de confirmación
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡No podrás deshacer esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                 confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    eliminarGeocercaSecundaria(feature.id); // Llama a la función de eliminación
+                    Swal.fire(
+                        'Eliminado!',
+                        'La geocerca ha sido eliminada.',
+                        'success'
+                    );
+                }
+            });
         });
 
         // Agregar a geocercas secundarias
