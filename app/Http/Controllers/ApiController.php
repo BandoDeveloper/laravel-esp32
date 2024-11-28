@@ -4,65 +4,90 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+use Illuminate\Database\QueryException;
 class ApiController extends Controller
 {
-    /*function switchToggleStatus()
-    {
-        $sql = DB::select("SELECT obtener_ultimo_estado() as estado;");
-        $data = get_object_vars($sql[0]);
-        if ($data['estado']) {
-            DB::insert("insert into estado_led(estado) values(false)");
-            return response()->json("apagado", 200, [
-                'Content-Type' => 'application/json'
-            ]);
-            echo("DATA = STRING");
-        } else if (!$data['estado']) {
-            DB::insert("insert into estado_led(estado) values(true)");
-            return response()->json("encendido", 200, [
-                'Content-Type' => 'application/json'
-            ]);
-            echo("DATA = BOOL");
-        }
-        return response()->json("ERROR", 500, [
-            'Content-Type' => 'application/json'
-        ]);
-    }
-    function verDatosSensor()
-    {
-        header("");
-        $sql = DB::select("SELECT * FROM obtener_lectura();");
-        $data = get_object_vars($sql[0]);
-        return response()->json($data, 200, [
-            'Content-Type' => 'application/json'
-        ]);
-    }
-    function obtenerEstadoLed()
-    {
-        $sql = DB::select("SELECT obtener_ultimo_estado();");
-        $cond = get_object_vars($sql[0])['obtener_ultimo_estado'];
-        if ($cond) {
-            return response("encendido", 200);
-        } else if (!$cond) {
-            return response("apagado", 200);
-        } else {
-            return response("Error", 404);
-        }
-    }
-    function sendDHTData(Request $req)
-    {
-        if (isset($req['temp'])) {
-            $temp = $req['temp'];
-            if (isset($req['humed'])) {
-                $humed = $req['humed'];
-                # code...
-                DB::insert("insert into DHT11(temperatura, humedad) values('$temp', '$humed')");
-                return response("Datos insertados", 200);
+    public function puntosEnGeocerca() {
+        // Obtener las coordenadas de la base de datos
+        $sql = DB::select("SELECT safezonescoords from zonasseguras ORDER BY id DESC LIMIT 1");
+        $latLonArrayBrute = get_object_vars(json_decode(get_object_vars($sql[0])["safezonescoords"]))["geocercas"];
+
+        // Inicializar un array para almacenar las geocercas
+        $geocercas = [];
+
+        foreach ($latLonArrayBrute as $index => $coordinates) {
+            $coords = get_object_vars($coordinates);
+            $geocercaCoords = []; // Array para almacenar las coordenadas de la geocerca actual
+
+            foreach ($coords as $latlon) {
+                if (is_object($latlon)) {
+                    $latlonDecode = get_object_vars($latlon);
+                    // Agregar las coordenadas al array de la geocerca actual
+                    $geocercaCoords[] = [
+                        'lat' => (float)$latlonDecode["lat"],
+                        'lon' => (float)$latlonDecode["lon"]
+                    ];
+                }
             }
-        } else {
-            return response("No Data Sent", 400);
+
+            // Almacenar las coordenadas de la geocerca en el array principal
+            $geocercas["geocerca_" . ($index + 1)] = $geocercaCoords; // Usa un identificador único para cada geocerca
         }
-    }*/
+
+        // Ahora $geocercas contiene todas las coordenadas organizadas por geocerca
+        return($geocercas);
+    }
+    private function puntoDentroGeocerca(array $punto, array $poligono) {
+        $numVertices = count($poligono);
+        $inside = false;
+
+        // Algoritmo de ray-casting para determinar si el punto está dentro del polígono
+        for ($i = 0, $j = $numVertices - 1; $i < $numVertices; $j = $i++) {
+            $xi = $poligono[$i][0];
+            $yi = $poligono[$i][1];
+            $xj = $poligono[$j][0];
+            $yj = $poligono[$j][1];
+
+            $intersect = (($yi > $punto[1]) != ($yj > $punto[1])) &&
+                         ($punto[0] < ($xj - $xi) * ($punto[1] - $yi) / ($yj - $yi) + $xi);
+            if ($intersect) {
+                $inside = !$inside;
+            }
+        }
+
+        return $inside;
+    }
+    public function verificarPuntoEnGeocerca(float $lat, float $lon) {
+        // Llama a la función que obtiene las coordenadas
+        $geocercas = $this->puntosEnGeocerca(); // Asegúrate de que esta función devuelva el array
+
+        // Recorre cada geocerca
+        foreach ($geocercas as $nombreGeocerca => $coordenadas) {
+            // Convierte las coordenadas a un formato que pueda ser utilizado por la función de verificación
+            $poligono = array_map(function($coord) {
+                return [(float)$coord['lon'], (float)$coord['lat']]; // Cambiar el orden a [lon, lat]
+            }, $coordenadas);
+
+            // Verifica si el punto está dentro de la geocerca
+            if ($this->puntoDentroGeocerca([$lon, $lat], $poligono)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    // Método para probar la funcionalidad
+    function pruebaVerificacion() {
+        // Define un punto de prueba (latitud, longitud)
+        $lat = -16.4948;
+        $lon = -68.1220;
+        // Llama al método de verificación
+        if($this->verificarPuntoEnGeocerca($lat, $lon)){
+            return response()->json("Esta en la geocerca", 200);
+        }
+        else{
+            return response()->json("No esta en la geocerca", 200);
+        }
+    }
     function A9gLocation()
     {
         return view("mapBox", []);
@@ -121,7 +146,7 @@ class ApiController extends Controller
             return response()->json(['message' => 'Inserción exitosa.'], 200);
         } catch (QueryException $e) {
             // Manejo de errores
-            return response()->json(['error' => 'Error en la inserción: ' . $e->getMessage()], 400);    
+            return response()->json(['error' => 'Error en la inserción: ' . $e->getMessage()], 400);
         }
     }
     function a9glocationFromsms(Request $req){
@@ -144,7 +169,12 @@ class ApiController extends Controller
                     return response()->json(['message' => 'Dentro'], 200);
                 }
                 else{
-                    return response()->json(['message' => 'fuera'], 200);
+                    if($this->verificarPuntoEnGeocerca($latitude, $longitude)){
+                        return response()->json(['message' => 'Safe Zone'], 200);
+                    }
+                    else{
+                        return response()->json(['message' => 'Fuera'], 200);
+                    }
                 }
             } catch (QueryException $e) {
                 // Manejo de errores
@@ -152,7 +182,7 @@ class ApiController extends Controller
             }
         } else {
             // Manejar el caso en que no se obtienen dos coordenadas
-            return response()->json(['error' => 'Error en la inserción: ' . $e->getMessage()], 400);
+            return response()->json(['error' => 'Error en la inserción: No enviaste los datos'], 400);
         }
     }
     function phoneGeocerca()
@@ -205,6 +235,51 @@ class ApiController extends Controller
             }
         } else {
             return response("No Data Sent", 400);
+        }
+    }
+    function safeZoneSave(Request $req){
+        if(isset($req['safeGeoFence'])){
+            $safeZones = $req['safeGeoFence'];
+            $geocercas = [];
+            $geocercasJson = json_decode($safeZones);
+            $geocercasDecode = get_object_vars($geocercasJson)['features'];
+            $indice = 0;
+            foreach ($geocercasDecode as $key) {
+                $geocercas[] = ['coordinates' => []];
+                $decGeoFence = get_object_vars($key);
+                $coords = get_object_vars($decGeoFence['geometry']);
+                foreach ($coords['coordinates'][0] as $latLon) {
+                    $geocercas[$indice][] = [
+                        'lon' => (float)$latLon[0],
+                        'lat' => (float)$latLon[1],
+                    ];
+                }
+
+                $indice++;
+            }
+            $resultado = [
+                'geocercas' => $geocercas
+            ];
+            // Imprimir el resultado para verificar
+            $safeZonesCoded = json_encode($resultado, );
+            try{
+                DB::insert("insert into zonasSeguras(safeZones, safeZonesCoords) values('$safeZones', '$safeZonesCoded')");
+                return response()->json("Insercion Exitosa", 200);
+            }catch(QueryException $e){
+                return response()->json("Error en la base de datos", status: 500);
+            }
+        }
+        else{
+            return response()->json("No hay Datos", status: 400);
+        }
+    }
+    function getSafeZones(){
+        try {
+            $sql = DB::select("SELECT safezones from zonasseguras ORDER BY id DESC LIMIT 1");
+            $data = get_object_vars($sql[0])['safezones'];
+            return response()->json($data, 200);
+        } catch (QueryException $e) {
+            return response()->json("Error en la base de datos", status: 500);
         }
     }
 }
