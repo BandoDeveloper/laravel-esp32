@@ -16,3 +16,7 @@ Route::post('/phoneGeocerca', [ApiController::class,'phoneGeocerca'])->name('pho
 //A9G location
 Route::get('/a9glocationFromsms', [ApiController::class,'a9glocationFromsms'])->name('a9glocationFromsms');
 Route::post('/a9glocationFromsms', [ApiController::class,'a9glocationFromsms'])->name('a9glocationFromsms');
+//Guardar zonas seguras
+Route::get('/safeZoneSave', [ApiController::class,'safeZoneSave'])->name('safeZoneSave');
+//Obtener zonas  seguras
+Route::get('/getSafeZones', [ApiController::class,'getSafeZones'])->name('getSafeZones');
