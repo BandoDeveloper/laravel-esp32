@@ -9,6 +9,7 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
     <link href="https://laravel-esp32.onrender.com/js/sidebar.css" rel="stylesheet">
     <link href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css' rel='stylesheet' />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> <!-- Agregado de Bootstrap -->
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js'></script>
     <style>
@@ -23,12 +24,37 @@
             bottom: 0;
             width: 100%;
         }
+
+        .info-card {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1;
+            width: 300px; /* Aumentar ancho de la tarjeta */
+        }
+
+        .card-body p {
+            font-size: 1.1rem; /* Aumentar tamaño del texto */
+        }
+
+        #guardar-geocerca {
+            margin-top: 20px; /* Margen superior para el botón */
+        }
     </style>
 </head>
 
 <body>
     <div id="map"></div>
-    <button id="guardar-geocerca" style="position: absolute; top: 10px; left: 10px; z-index: 1;">Guardar Geocerca</button>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Códigos de Colores</h5>
+            <p><span class="badge badge-danger">Rojo</span> Tu posición</p>
+            <p><span class="badge badge-success">Verde</span> Geocercas Antiguas</p>
+            <p><span class="badge badge-primary">Azul</span> Geocercas Nuevas</p>
+            <p class="text-muted">Nota: Presiona una geocerca verde para eliminarla.</p>
+        </div>
+    </div>
+    <button id="guardar-geocerca" class="btn btn-primary" style="position: absolute; top: 5sp; left: 10px; z-index: 1;">Guardar Geocercas</button>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
